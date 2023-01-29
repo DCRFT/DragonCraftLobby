@@ -1,0 +1,62 @@
+slots:
+  music: 0
+  profile: 2
+  players: 8
+  selector: 4
+  whitelist: 6
+items:
+  music: JUKEBOX
+  players:
+    visible: ENDER_EYE
+    hidden: SLIME_BALL
+  selector: COMPASS
+  whitelist:
+    enabled: BLACK_STAINED_GLASS_PANE
+    disabled: WHITE_STAINED_GLASS_PANE
+selector:
+  11:
+    item: IRON_PICKAXE
+    name: "       §6Survival 1.16"
+    lore:
+      - "§aSerwer Survival + Działki"
+      - "        §a1.16-1.16.5"
+    server: "budowniczy"
+  13:
+    item: DIAMOND_SWORD
+    name: "    §6Testowy Prima"
+    lore:
+      - "§aSerwer testowy Prima"
+      - "        §a1.8-1.8.9"
+      - "    §7[Administracja]"
+    server: "prima"
+  15:
+    item: WATER_BUCKET
+    name: "     §6Testowy River"
+    lore:
+      - "§aSerwer testowy River"
+      - "       §a1.18-1.18.1"
+      - "    §7[Administracja]"
+    server: "river"
+aliases:
+  non-premium: "cracked"
+afk:
+  kick_warn_delay: 14
+  kick_delay: 15
+  sound_on_get_warn: true
+  sound_on_notafk: true
+scoreboard:
+  title: "§e§lDragon§6§lCraft"
+  prefix: "§e» "
+  nick: "§6Nick: §e"
+  ping: "§6Ping: §e"
+  rank: "§6Ranga: §e"
+  time: "§6Godzina: §e"
+  server-ip: "  §e» §6§lDCRFT.PL §e«"
+  server:
+    all: "§6Gracze ogółem: §e"
+disabled_default_permission: "cb.adm"
+filters:
+  kurwa: (ಠ益ಠ)
+  dwur: dwór
+replacement:
+  - dwóron
