@@ -50,6 +50,9 @@ public final class DragonCraftLobby extends JavaPlugin implements Listener, Comm
         getServer().getPluginManager().registerEvents(new PlayerChatListener(), this);
         getServer().getPluginManager().registerEvents(new UnknownCommandEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(), this);
+        getServer().getPluginManager().registerEvents(new HotbarSwitchListener(), this);
+        getServer().getPluginManager().registerEvents(new InventoryCloseListener(), this);
+
 
         getLogger().info(LanguageManager.getMessage("plugin.header"));
         getLogger().info("§e§lDragon§6§lCraft§b§lLobby");

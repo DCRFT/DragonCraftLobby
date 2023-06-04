@@ -67,10 +67,10 @@ public class InvetoryClickListener implements Listener {
 
                     p.stopAllSounds();
                     p.playSound(p.getLocation(), list.get(e.getSlot()-9), 100F, 1F);
-                    p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 100F, 2F);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100F, 1F);
             } else if (e.getCurrentItem() != null && e.getCurrentItem().getType() == Material.BARRIER) {
                 p.stopAllSounds();
-                p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 100F, 2F);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100F, 0.5F);
             }
         } else if (title.contains(LanguageManager.getMessage("profile.title"))) {
             e.setCancelled(true);

@@ -26,7 +26,8 @@ public class AnimationUtil {
 
                         p.showTitle(ftitle);
 
-                        p.playSound(p.getLocation(), org.bukkit.Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 100F, 1F);
+                        float pitch = (float) RandomUtil.randomDouble(0.9, 1.1);
+                        p.playSound(p.getLocation(), org.bukkit.Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 100F, pitch);
                     }, 40 + i * 2L);
 
         }

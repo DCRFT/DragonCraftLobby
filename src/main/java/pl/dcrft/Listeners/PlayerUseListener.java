@@ -69,7 +69,7 @@ public class PlayerUseListener implements Listener {
                 p.openInventory(inventory);
 
 
-                p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 100F, 2F);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100F, 1F);
 
             } else if (itemStack.getItemMeta().displayName().equals(Component.text(LanguageManager.getMessage("items.music")))) {
                 e.setCancelled(true);
@@ -91,14 +91,14 @@ public class PlayerUseListener implements Listener {
                 inventory.setItem(35, is);
 
                 p.openInventory(inventory);
-                p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 100F, 2F);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100F, 1F);
 
             } else if (itemStack.getItemMeta().displayName().equals(Component.text(LanguageManager.getMessage("items.profile")))) {
                 e.setCancelled(true);
 
                 ProfileManager.showProfile(p, p.getName(), ProfileType.SURVIVAL);
 
-                p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 100F, 2F);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100F, 1F);
 
             } else if (itemStack.getItemMeta().displayName().equals(Component.text(LanguageManager.getMessage("items.players.visible")))) {
                 e.setCancelled(true);
@@ -113,7 +113,7 @@ public class PlayerUseListener implements Listener {
                 }
 
                 p.getInventory().setItem(plugin.getConfig().getInt("slots.players"), is);
-                p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 100F, 2F);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100F, 0.5F);
 
             } else if (itemStack.getItemMeta().displayName().equals(Component.text(LanguageManager.getMessage("items.players.hidden")))) {
                 e.setCancelled(true);
@@ -127,7 +127,7 @@ public class PlayerUseListener implements Listener {
                     p.showPlayer(plugin, online);
                 }
                 p.getInventory().setItem(plugin.getConfig().getInt("slots.players"), is);
-                p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 100F, 2F);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100F, 1F);
 
             } else if (itemStack.getItemMeta().displayName().equals(Component.text(LanguageManager.getMessage("items.whitelist.enabled")))) {
                 e.setCancelled(true);
@@ -140,7 +140,7 @@ public class PlayerUseListener implements Listener {
                 plugin.getServer().setWhitelist(false);
 
                 p.getInventory().setItem(plugin.getConfig().getInt("slots.whitelist"), is);
-                p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 100F, 2F);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100F, 0.5F);
 
             } else if (itemStack.getItemMeta().displayName().equals(Component.text(LanguageManager.getMessage("items.whitelist.disabled")))) {
                 e.setCancelled(true);
@@ -153,7 +153,7 @@ public class PlayerUseListener implements Listener {
                 plugin.getServer().setWhitelist(true);
 
                 p.getInventory().setItem(plugin.getConfig().getInt("slots.whitelist"), is);
-                p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_FLAP, 100F, 2F);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100F, 1F);
 
             }
 
