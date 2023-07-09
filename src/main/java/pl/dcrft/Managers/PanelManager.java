@@ -7,7 +7,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
 import pl.dcrft.DragonCraftLobby;
 
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class PanelManager {
@@ -52,9 +53,13 @@ public class PanelManager {
 
         objective.getScore("§r§r§r ").setScore(5);
 
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        String scoredate = sdf.format(date);
+
         objective.getScore(prefix
                 + plugin.getConfig().getString("scoreboard.time")
-                + Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + ":" + Calendar.getInstance().get(Calendar.MINUTE)).setScore(4);
+                + scoredate).setScore(4);
 
         objective.getScore("§r§r§r§r ").setScore(3);
 
