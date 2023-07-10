@@ -23,6 +23,7 @@ public class DatabaseManager {
     public static final String table_skyblock = ConfigManager.getDatabaseFile().getString("table_skyblock");
 
     public static final String table_bungee = ConfigManager.getDatabaseFile().getString("table_bungee");
+    private static final String properties = ConfigManager.getDatabaseFile().getString("properties");
 
     public static void openConnection() {
         try {
@@ -30,7 +31,7 @@ public class DatabaseManager {
                 synchronized(plugin) {
                     if (connection == null || connection.isClosed()) {
                         Class.forName("com.mysql.jdbc.Driver");
-                        connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database + "?autoReconnect=true&verifyServerCertificate=false&useSSL=false&testOnBorrow=true&validationQuery='SELECT 1'&validationInterval=60&useUnicode=yes&character_set_server=utf8mb4&characterEncoding=UTF-8&tcpKeepAlive=true&testWhileIdle=true&minEvictableIdleTimeMillis=1800000&timeBetweenEvictionRunsMillis=1800000", username, password);
+                        connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database + properties, username, password);
                     }
                 }
             }
