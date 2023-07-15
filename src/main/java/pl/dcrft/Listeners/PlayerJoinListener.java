@@ -44,9 +44,9 @@ public class PlayerJoinListener implements Listener {
                     String rank = GroupUtil.getPlayerGroup(p.getName());
 
                     if (!val) {
-                        statement.executeUpdate("INSERT INTO " + DatabaseManager.table_bungee + " (nick, ranga, since, online) VALUES ('" + p.getName() + "', '" + rank + "', '" + since + "', 'lobby', 'teraz');");
+                        statement.executeUpdate("INSERT INTO " + DatabaseManager.table_bungee + " (nick, ranga, since, online) VALUES ('" + p.getName() + "', '" + rank + "', '" + since + "', 'teraz');");
                         statement.executeUpdate("INSERT INTO " + DatabaseManager.table_survival + " (nick, kille, dedy, kdr, bloki, slub) VALUES ('" + p.getName() + "', '0', '0', '0', '0', 'brak'); ");
-                        statement.executeUpdate("INSERT INTO " + DatabaseManager.table_skyblock + " (nick, kille, dedy, kdr, wyspa, slub) VALUES ('" + p.getName() + "', '0', '0', '0', '0', 'brak'); ");
+                        statement.executeUpdate("INSERT INTO " + DatabaseManager.table_skyblock + " (nick, kille, dedy, kdr, poziom, kasa, slub) VALUES ('" + p.getName() + "', '0', '0', '0', '0', '0', 'brak'); ");
                         //statement.executeUpdate("INSERT INTO staty_pvp (nick, kille, dedy, kdr, ranga, poziom, sj) VALUES ('" + p.getName() + "', '0', '0', '0', 'Gracz', '0', '0'); ");
                     } else {
                         statement.executeUpdate("UPDATE " + DatabaseManager.table_bungee + " SET ranga='" + rank + "', since='" + since + "', online='teraz' WHERE nick='" + p.getName() + "';");
