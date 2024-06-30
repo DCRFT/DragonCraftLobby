@@ -1,3 +1,4 @@
+captcha-enabled: false
 slots:
   music: 0
   profile: 2

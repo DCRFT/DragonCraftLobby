@@ -23,3 +23,5 @@ commands:
     description: aa
   cc:
     description: aa
+  crestart:
+    description: console restart

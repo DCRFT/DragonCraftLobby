@@ -6,7 +6,7 @@
 
     <groupId>pl.dcrft.dcl</groupId>
     <artifactId>DragonCraftLobby</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <packaging>jar</packaging>
 
     <name>DragonCraftLobby</name>
@@ -85,6 +85,10 @@
 
     <repositories>
         <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
             <id>papermc-repo</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
@@ -103,6 +107,7 @@
     </repositories>
 
     <dependencies>
+
         <dependency>
             <groupId>net.luckperms</groupId>
             <artifactId>api</artifactId>
@@ -126,6 +131,11 @@
             <artifactId>placeholderapi</artifactId>
             <version>2.11.2</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>5.0.1</version>
         </dependency>
     </dependencies>
 </project>

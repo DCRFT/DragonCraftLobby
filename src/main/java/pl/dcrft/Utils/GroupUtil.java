@@ -26,8 +26,12 @@ public class GroupUtil {
             rank = "ViceAdministrator";
         } else if (rawRank.equalsIgnoreCase("administrator")) {
             rank = "Administrator";
-        } else if (rawRank.equalsIgnoreCase("w?a?ciciel")) {
-            rank = "Właściciel";
+        } else if (rawRank.equalsIgnoreCase("media")) {
+            rank = "Media";
+        } else if (rawRank.equalsIgnoreCase("opiekun")) {
+            rank = "Opiekun";
+        } else if (rawRank.equalsIgnoreCase("budowniczy")) {
+            rank = "Budowniczy";
         }
         return rank;
     }

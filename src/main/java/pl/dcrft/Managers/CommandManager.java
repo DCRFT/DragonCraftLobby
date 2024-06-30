@@ -7,8 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import pl.dcrft.DragonCraftLobby;
-import pl.dcrft.Managers.Profile.ProfileManager;
-import pl.dcrft.Managers.Profile.ProfileType;
+import pl.dcrft.Managers.Statistic.ServerType;
+import pl.dcrft.Managers.Statistic.StatisticGUIManager;
 import pl.dcrft.Utils.ConfigUtil;
 
 import java.util.ArrayList;
@@ -21,16 +21,16 @@ public class CommandManager implements CommandExecutor {
     final String prefix = LanguageManager.getMessage("prefix");
 
     public boolean onCommand(final @NotNull CommandSender sender, final Command cmd, final @NotNull String label, final String[] args) {
-        if(cmd.getName().equalsIgnoreCase("restart") && sender.hasPermission("r.adm")) {
-                if (args.length == 0) {
-                    MaintenanceManager.restartServer();
+        if (cmd.getName().equalsIgnoreCase("restart") && sender.hasPermission("r.adm")) {
+            if (args.length == 0) {
+                MaintenanceManager.restartServer();
+            } else {
+                if (!args[0].chars().allMatch(Character::isDigit) || Integer.parseInt(args[0]) < 1) {
+                    MessageManager.sendPrefixedMessage(sender, "maintenance.wrong_value");
                 } else {
-                    if (!args[0].chars().allMatch(Character::isDigit) || Integer.parseInt(args[0]) < 1) {
-                        MessageManager.sendPrefixedMessage(sender, "maintenance.wrong_value");
-                    } else {
-                        MaintenanceManager.restartServer(Integer.parseInt(args[0]));
-                    }
+                    MaintenanceManager.restartServer(Integer.parseInt(args[0]));
                 }
+            }
         } else if (cmd.getName().equalsIgnoreCase("czat")) {
             if (!sender.hasPermission("panel.mod")) {
                 MessageManager.sendPrefixedMessage(sender, "notfound");
@@ -71,7 +71,6 @@ public class CommandManager implements CommandExecutor {
                 if (ConfigManager.getDataFile().getBoolean("players." + sender.getName() + ".adminchat")) {
                     ConfigManager.getDataFile().set("players." + sender.getName() + ".adminchat", false);
                     sender.sendMessage(LanguageManager.getMessage("staffchat.adminchat.title") + LanguageManager.getMessage("staffchat.modchat.spacer") + LanguageManager.getMessage("staffchat.disabled"));
-
 
 
                     ConfigManager.saveData();
@@ -118,13 +117,13 @@ public class CommandManager implements CommandExecutor {
         } else if (cmd.getName().equalsIgnoreCase("gracz")) {
 
             if (!(sender instanceof Player)) {
-                sender.sendMessage("§e§lDragon§6§lCraft §e » §cWygl\u0105da na to, \u017ce jeste\u015b konsol\u0105! Ta komenda tak nie zadzia\u0142a :/");
+                sender.sendMessage("§e§lDragon§6§lCraft§e » §cWygląda na to, że jesteś konsolą! Ta komenda tak nie zadziała :/");
                 return false;
             } else if (args.length == 0) {
-                ((Player) sender).chat("/gracz " + sender.getName());
+                StatisticGUIManager.showStatistics(ServerType.Survival, (Player) sender, sender.getName());
                 return true;
             } else {
-                ProfileManager.showProfile((Player) sender, args[0], ProfileType.SURVIVAL);
+                StatisticGUIManager.showStatistics(ServerType.Survival, (Player) sender, args[0]);
             }
         } else if (cmd.getName().equalsIgnoreCase("dcl")) {
             if (sender.hasPermission("dcc.adm")) {
@@ -140,20 +139,35 @@ public class CommandManager implements CommandExecutor {
             } else {
                 MessageManager.sendPrefixedMessage(sender, "unknown-command");
             }
-            } else if (cmd.getName().equalsIgnoreCase("cc")) {
-                if (sender.hasPermission("cc.adm")) {
-                    for (int i = 0; i < 100; ++i) {
-                        Bukkit.getServer().broadcastMessage("");
-                    }
-                    Bukkit.getServer().broadcastMessage(prefix + LanguageManager.getMessage("chat.cleared"));
-                    return true;
+        } else if (cmd.getName().equalsIgnoreCase("cc")) {
+            if (sender.hasPermission("cc.adm")) {
+                for (int i = 0; i < 100; ++i) {
+                    Bukkit.getServer().broadcastMessage("");
                 }
-                if (!sender.hasPermission("cc.adm")) {
-                    MessageManager.sendPrefixedMessage(sender, "unknown-command");
-                }
+                Bukkit.getServer().broadcastMessage(prefix + LanguageManager.getMessage("chat.cleared"));
                 return true;
             }
-        return false;
+            if (!sender.hasPermission("cc.adm")) {
+                MessageManager.sendPrefixedMessage(sender, "unknown-command");
+            }
+            return true;
+
+        } else if (cmd.getName().equalsIgnoreCase("crestart")) {
+            if (sender.hasPermission("r.adm")) {
+                if (args.length == 0) {
+                    MaintenanceManager.restartServer();
+                } else {
+                    if (!args[0].chars().allMatch(Character::isDigit) || Integer.parseInt(args[0]) < 1) {
+                        MessageManager.sendPrefixedMessage(sender, "maintenance.wrong_value");
+                    } else {
+                        MaintenanceManager.restartServer(Integer.parseInt(args[0]));
+                    }
+                }
+            } else {
+                return false;
+            }
         }
+        return false;
     }
+}
 

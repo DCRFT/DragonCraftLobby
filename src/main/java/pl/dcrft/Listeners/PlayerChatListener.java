@@ -21,6 +21,7 @@ public class PlayerChatListener implements Listener {
 
     @EventHandler
     public void onPlayerChat(final AsyncPlayerChatEvent e) {
+
         Player p = e.getPlayer();
         if(!ConfigManager.getDataFile().getBoolean("czat") && !e.getPlayer().hasPermission("panel.mod")){
             e.setCancelled(true);

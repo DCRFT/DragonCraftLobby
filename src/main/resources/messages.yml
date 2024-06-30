@@ -1,4 +1,5 @@
 prefix: "§e§lDragon§6§lCraft §e» "
+wrong_player_nickname: "§cPodaj poprawny nick gracza."
 items:
   music: "&3Muzyka"
   profile: "&eMój profil"
@@ -73,7 +74,7 @@ music:
   title: "§e§lDragon§6§lCraft &e» &3Muzyka"
   stop: "&cZatrzymaj"
 unknown-command: "&cNie ma takiej komendy."
-profile:
+statistics:
   title: "§6Profil §e» §3"
   unknown-player: "§cPodaj poprawny nick gracza."
   head: "§6Głowa §e» "
@@ -82,27 +83,25 @@ profile:
     offline: "§6Ostatnio online §e» §c"
   rank: "§6Ranga §e» "
   marry:
-    active: "§6\u015alub §e» §e"
+    title: "§6\u015alub §e» §e"
     none: "§6\u015alub §e» §cbrak"
   kills: "§6Zab\u00f3jstwa §e» "
   deaths: "§6\u015amierci §e» "
   kdr: "§6Stosunek Z/\u015b §e» "
   since: "§6Gra od §e» "
-  ver: "§6Wersja §e» "
+  plugin_version: "§6Wersja §e» "
   blocks: "§6Wykopane bloki §e» §e"
   level: "§6Poziom §e» §e"
-  money: "§6Smocze jaja §e» §e"
+  money: "§6Smocze monety §e» §e"
+  ranking: "§6Ranking §e»"
+  assists: "§6Asysty §e»"
+  killstreak: "§6Maks. seria zabójstw §e»"
   timeplayed: "§6Czas gry §e» "
-  punishments:
-    title: "§6Kary §e»"
-    title-none: "§6Kary §e» §abrak"
-    bans: "§6Bany §e»"
-    warns: "§6Ostrzeżenia §e»"
-    mutes: "§6Wyciszenia §e»"
-    color: "§c"
   server:
     skyblock: "§6SkyBlock &eII"
     survival: "§6Survival §eVII"
+    pvp: "&c?"
+    hns: "&c?"
 errors:
   database:
     - "§e--------------------------------------------"
@@ -135,3 +134,8 @@ plugin:
   disabled: "§cWyłączono wersję §2"
 help:
   - "&e/dcl przeladuj &e- przeładowuje konfigurację"
+captcha:
+  prompt: "&cPrzepisz kod captcha z mapy."
+  wrong: "&e&lDragon&6&lCraft &e» &cNiepoprawny kod captcha."
+  success: "&aPoprawny kod captcha."
+  map: "&cPrzepisz kod captcha z tej mapy."

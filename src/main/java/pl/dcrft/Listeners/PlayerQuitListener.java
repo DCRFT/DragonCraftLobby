@@ -8,10 +8,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import pl.dcrft.DragonCraftLobby;
 import pl.dcrft.Managers.DatabaseManager;
 
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class PlayerQuitListener implements Listener {
     private static final DragonCraftLobby plugin = DragonCraftLobby.getInstance();
@@ -20,24 +18,20 @@ public class PlayerQuitListener implements Listener {
     private void onPlayerQuit(PlayerQuitEvent e) {
         Player p = e.getPlayer();
 
-        if(!p.isOp()) {
-            final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy 'o' HH:mm");
-            final LocalDateTime now = LocalDateTime.now();
+        if(p.hasPermission("dcc.login.admin")) return;
+
+        final DatabaseManager databaseManager = new DatabaseManager();
+
+            final SimpleDateFormat dtf = new SimpleDateFormat("dd.MM.yyyy 'o' HH:mm");
+            Date date = new Date(System.currentTimeMillis());
 
             Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-                DatabaseManager.openConnection();
-                final Statement statement;
-                try {
-                    statement = DatabaseManager.connection.createStatement();
-                    statement.executeUpdate("UPDATE staty_ogolem SET online='" + dtf.format(now) + "' WHERE nick='" + p.getName() + "'");
-                    statement.close();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
+
+                databaseManager.update("UPDATE " + DatabaseManager.table_bungee + " SET online='" + dtf.format(date) + "' WHERE nick='" + p.getName() + "'");
 
 
             });
-        }
+
     }
 
 }

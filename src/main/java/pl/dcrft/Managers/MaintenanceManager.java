@@ -23,7 +23,6 @@ public class MaintenanceManager {
     }
 
     public static void restartServer(int minutes) {
-        setWhitelist(true);
         saveAll();
 
         if(minutes > 1) {
@@ -72,7 +71,6 @@ public class MaintenanceManager {
                 }
 
                 saveAll();
-                setWhitelist(false);
                 Bukkit.spigot().restart();
             }, 1000L);
         }, (minutes - 1) * 1200);

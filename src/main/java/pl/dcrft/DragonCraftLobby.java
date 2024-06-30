@@ -25,12 +25,15 @@ import java.util.Map;
 
 public final class DragonCraftLobby extends JavaPlugin implements Listener, CommandExecutor {
     private static DragonCraftLobby instance;
+
     public static DragonCraftLobby getInstance() {
         return instance;
     }
+
     public static LuckPerms getLuckPerms() {
         return luckPermsApi;
     }
+
     public static LuckPerms luckPermsApi;
     public Map<String, Object> filters;
 
@@ -38,11 +41,15 @@ public final class DragonCraftLobby extends JavaPlugin implements Listener, Comm
         this.filters = new HashMap<>();
     }
 
+
     @Override
     public void onEnable() {
 
         instance = this;
         ConfigUtil.initializeFiles();
+
+        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerUseListener(), this);
         getServer().getPluginManager().registerEvents(new InvetoryClickListener(), this);
@@ -65,32 +72,33 @@ public final class DragonCraftLobby extends JavaPlugin implements Listener, Comm
         for (Command command : commands) {
             getCommand(command.getName()).setExecutor(new CommandManager());
         }
-        for(String cmd : getConfig().getConfigurationSection("aliases").getKeys(false)){
+        for (String cmd : getConfig().getConfigurationSection("aliases").getKeys(false)) {
             Bukkit.getCommandMap().register(cmd, new CommandRunUtil(cmd));
         }
         SessionManager.getRunnable().runTaskTimer(this, 0L, 1200L);
-        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
         RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
         if (provider != null) {
             luckPermsApi = provider.getProvider();
 
         }
+        DatabaseManager.initializeDataSource();
 
     }
+
     @Override
     public void onDisable() {
-        if (DatabaseManager.connection != null) {
-            try {
-                DatabaseManager.connection.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-                ErrorUtil.logError(ErrorReason.DATABASE);
-            }
+        try {
+            DatabaseManager.getConnection().close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            ErrorUtil.logError(ErrorReason.DATABASE);
         }
         getLogger().info(LanguageManager.getMessage("plugin.header"));
         getLogger().info("§e§lDragon§6§lCraft§a§lCore");
         getLogger().info(LanguageManager.getMessage("plugin.disabled") + getDescription().getVersion());
         getLogger().info(LanguageManager.getMessage("plugin.footer"));
     }
+
+
 }

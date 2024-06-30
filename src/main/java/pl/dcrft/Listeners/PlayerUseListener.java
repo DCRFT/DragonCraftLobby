@@ -14,8 +14,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import pl.dcrft.DragonCraftLobby;
 import pl.dcrft.Managers.LanguageManager;
-import pl.dcrft.Managers.Profile.ProfileManager;
-import pl.dcrft.Managers.Profile.ProfileType;
+import pl.dcrft.Managers.Statistic.ServerType;
+import pl.dcrft.Managers.Statistic.StatisticGUIManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,6 +43,7 @@ public class PlayerUseListener implements Listener {
     public void onPlayerUse(PlayerInteractEvent e) {
         Player p = e.getPlayer();
 
+
         ItemStack itemStack = p.getInventory().getItemInMainHand();
 
         if (itemStack.getItemMeta() != null && AuthMeApi.getInstance().isAuthenticated(p) && itemStack.getItemMeta().displayName() != null) {
@@ -50,7 +51,7 @@ public class PlayerUseListener implements Listener {
             if (itemStack.getItemMeta().displayName().equals(Component.text(LanguageManager.getMessage("items.selector")))) {
                 e.setCancelled(true);
 
-                Inventory inventory = Bukkit.createInventory(null, 27, LanguageManager.getMessage("selector.title"));
+                Inventory inventory = Bukkit.createInventory(null, 45, LanguageManager.getMessage("selector.title"));
 
 
                 for (String i : plugin.getConfig().getConfigurationSection("selector").getKeys(false)) {
@@ -96,7 +97,7 @@ public class PlayerUseListener implements Listener {
             } else if (itemStack.getItemMeta().displayName().equals(Component.text(LanguageManager.getMessage("items.profile")))) {
                 e.setCancelled(true);
 
-                ProfileManager.showProfile(p, p.getName(), ProfileType.SURVIVAL);
+                StatisticGUIManager.showStatistics(ServerType.Survival, p, p.getName());
 
                 p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100F, 1F);
 
