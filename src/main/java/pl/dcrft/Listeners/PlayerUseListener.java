@@ -48,31 +48,7 @@ public class PlayerUseListener implements Listener {
 
         if (itemStack.getItemMeta() != null && AuthMeApi.getInstance().isAuthenticated(p) && itemStack.getItemMeta().displayName() != null) {
 
-            if (itemStack.getItemMeta().displayName().equals(Component.text(LanguageManager.getMessage("items.selector")))) {
-                e.setCancelled(true);
-
-                Inventory inventory = Bukkit.createInventory(null, 45, LanguageManager.getMessage("selector.title"));
-
-
-                for (String i : plugin.getConfig().getConfigurationSection("selector").getKeys(false)) {
-                    int j = Integer.parseInt(i);
-
-                    ItemStack is = new ItemStack(Material.getMaterial(plugin.getConfig().getString("selector." + j + ".item")));
-                    ItemMeta meta = is.getItemMeta();
-                    meta.displayName(Component.text(plugin.getConfig().getString("selector." + j + ".name")));
-                    List<String> list = plugin.getConfig().getStringList("selector." + j + ".lore");
-                    meta.setLore(list);
-                    is.setItemMeta(meta);
-
-                    inventory.setItem(j, is);
-                }
-
-                p.openInventory(inventory);
-
-
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100F, 1F);
-
-            } else if (itemStack.getItemMeta().displayName().equals(Component.text(LanguageManager.getMessage("items.music")))) {
+            if (itemStack.getItemMeta().displayName().equals(Component.text(LanguageManager.getMessage("items.music")))) {
                 e.setCancelled(true);
 
                 Inventory inventory = Bukkit.createInventory(null, 36, LanguageManager.getMessage("music.title"));

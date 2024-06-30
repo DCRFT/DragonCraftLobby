@@ -46,22 +46,7 @@ public class InvetoryClickListener implements Listener {
         String title = e.getView().getTitle();
 
         if(!p.isOp()) e.setCancelled(true);
-        if (title.contains(LanguageManager.getMessage("selector.title"))) {
-
-            e.getClickedInventory().close();
-
-            if(e.getCurrentItem() != null) {
-                String bungee = plugin.getConfig().getString("selector." + e.getSlot() + ".server");
-                ByteArrayOutputStream b = new ByteArrayOutputStream();
-                DataOutputStream out = new DataOutputStream(b);
-                try {
-                    out.writeUTF("Connect");
-                    out.writeUTF(bungee);
-                } catch (IOException exception) {
-                }
-                p.sendPluginMessage(plugin, "BungeeCord", b.toByteArray());
-            }
-        } else if (title.contains(LanguageManager.getMessage("music.title"))) {
+        if (title.contains(LanguageManager.getMessage("music.title"))) {
 
             e.getClickedInventory().close();
 

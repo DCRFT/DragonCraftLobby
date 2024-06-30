@@ -109,7 +109,7 @@ public class PlayerJoinListener implements Listener {
 
         p.getInventory().clear();
 
-        p.getInventory().setHeldItemSlot(plugin.getConfig().getInt("slots.selector"));
+        p.getInventory().setHeldItemSlot(4);
 
         ItemStack music = new ItemStack(Material.getMaterial(plugin.getConfig().getString("items.music")));
         ItemMeta musicMeta = music.getItemMeta();
@@ -128,11 +128,6 @@ public class PlayerJoinListener implements Listener {
         playersMeta.displayName(Component.text(LanguageManager.getMessage("items.players.visible")));
         players.setItemMeta(playersMeta);
 
-        ItemStack selector = new ItemStack(Material.getMaterial(plugin.getConfig().getString("items.selector")));
-        ItemMeta selectorMeta = selector.getItemMeta();
-        selectorMeta.displayName(Component.text(LanguageManager.getMessage("items.selector")));
-        selector.setItemMeta(selectorMeta);
-
         ItemStack wh_on = new ItemStack(Material.getMaterial(plugin.getConfig().getString("items.whitelist.enabled")));
         ItemMeta wh_onMeta = wh_on.getItemMeta();
         wh_onMeta.displayName(Component.text(LanguageManager.getMessage("items.whitelist.enabled")));
@@ -146,7 +141,6 @@ public class PlayerJoinListener implements Listener {
         p.getInventory().setItem(plugin.getConfig().getInt("slots.music"), music);
         p.getInventory().setItem(plugin.getConfig().getInt("slots.profile"), profile);
         p.getInventory().setItem(plugin.getConfig().getInt("slots.players"), players);
-        p.getInventory().setItem(plugin.getConfig().getInt("slots.selector"), selector);
 
         if(p.hasPermission("dcl.adm")) {
             if (plugin.getServer().hasWhitelist()) {
@@ -157,7 +151,6 @@ public class PlayerJoinListener implements Listener {
         }
 
         AnimationUtil.playAnimation(p, LanguageManager.getMessageList("welcome.title"), LanguageManager.getMessage("welcome.subtitle"));
-        BossBarManager.startBroadcasting(p);
 
         new PanelManager().showRepeatingPanel(p);
 

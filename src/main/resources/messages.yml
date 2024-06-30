@@ -6,7 +6,6 @@ items:
   players:
     visible: "&3Gracze&e » &awidoczni"
     hidden: "&3Gracze&e » &cukryci"
-  selector: "&3Wybierz serwer"
   whitelist:
     enabled: "&fBiała lista &e» &awłączona"
     disabled: "&fBiała lista &e» &cwyłączona"
@@ -24,8 +23,6 @@ welcome:
     - "&e&lDragon&6&lCraf"
     - "&e&lDragon&6&lCraft"
   subtitle: "&6Przygoda zaczyna się tutaj."
-selector:
-  title: "&e&lDragon&6&lCraft &e» &3Wybierz serwer"
 maintenance:
   reload_plugin: "§aPrzeładowano pliki konfiguracyjne §e§lDragon§6§lCraft§b§lLobby§a."
   saving: "§cZapisywanie plików świata..."
@@ -63,13 +60,6 @@ chat:
   disabled: "§cCzat został wyciszony."
   cleared: '&cCzat został wyczyszczony.'
 censored_notification: "§e{0} §cużył niedozwolonego słowa §e» §e {1}"
-bossbar:
-  - "&6Witaj &6na &e&lDragon&6&lCraft&e!"
-  - "&6Rangi, Smocze jaja i inne dodatki zakupisz na &eDCRFT.PL"
-  - "&6Ranga &f&lYou&4&lTuber &6jest od &e500&6 subskrypcji"
-  - "&6Zgłoszenia zgłaszaj poprzez &e/zglos &6na wybranym trybie"
-  - "&6Polub &e&lDragon&6&lCraft na &eFacebooku&6!"
-  - "&6Wybierz serwer za pomocą &ekompasu&6!"
 music:
   title: "§e§lDragon§6§lCraft &e» &3Muzyka"
   stop: "&cZatrzymaj"
