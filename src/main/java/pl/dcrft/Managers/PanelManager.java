@@ -16,7 +16,7 @@ public class PanelManager {
 
     public static final DragonCraftLobby plugin = DragonCraftLobby.getInstance();
 
-     private static String prefix = plugin.getConfig().getString(("scoreboard.prefix"));
+     private static final String prefix = plugin.getConfig().getString(("scoreboard.prefix"));
     public static void sendPanel(Player p) {
 
         String title = plugin.getConfig().getString("scoreboard.title");

@@ -47,7 +47,7 @@ public class StatisticGUIManager {
                 return;
             }
 
-            HashMap<StatisticType, String> statistics = null;
+            HashMap<StatisticType, String> statistics;
             try {
                 statistics = StatisticManager.getStatistics(serverType, p);
             } catch (SQLException e) {
@@ -92,7 +92,6 @@ public class StatisticGUIManager {
 
 
             String kills,deaths,kdr,blocks,level,money,timeplayed,marry,assists,ranking,killstreak;
-            kills = deaths = kdr = blocks = level = money = timeplayed = marry = assists = ranking = killstreak = null;
 
             switch (serverType){
                 case Survival:

@@ -25,7 +25,6 @@ public class ConfigUtil {
         ConfigManager.createMessagesFile();
         ConfigManager.createCustomConfig();
         ConfigManager.createDataFile();
-        LanguageManager.load();
     }
 
     public static void reloadFiles() {

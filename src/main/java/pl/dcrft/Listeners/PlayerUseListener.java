@@ -23,7 +23,7 @@ import java.util.List;
 
 public class PlayerUseListener implements Listener {
     public static DragonCraftLobby plugin = DragonCraftLobby.getInstance();
-    List<Material> list = new ArrayList<Material>(Arrays.asList(
+    List<Material> list = new ArrayList<>(Arrays.asList(
             Material.MUSIC_DISC_5,
             Material.MUSIC_DISC_11,
             Material.MUSIC_DISC_13,

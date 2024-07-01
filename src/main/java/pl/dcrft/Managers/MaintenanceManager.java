@@ -18,28 +18,24 @@ public class MaintenanceManager {
         plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> Bukkit.spigot().restart());
     }
 
-    public static void setWhitelist(boolean state) {
-        plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> Bukkit.setWhitelist(state));
-    }
-
     public static void restartServer(int minutes) {
         saveAll();
 
         if(minutes > 1) {
-            MessageManager.broadcastPrefixed(MessageFormat.format(LanguageManager.getMessage("maintenance.restart.broadcast"), +minutes + " " + LanguageManager.getMessage("maintenance.timeformat.minutes")));
+            MessageManager.broadcastPrefixed(MessageFormat.format(LanguageManager.getMessage("maintenance.restart.broadcast"), minutes + " " + LanguageManager.getMessage("maintenance.timeformat.minutes")));
         }
-        Bukkit.getServer().getScheduler().scheduleAsyncDelayedTask(plugin, () -> {
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
             MessageManager.broadcastPrefixed(MessageFormat.format(LanguageManager.getMessage("maintenance.restart.broadcast"), "1 " + LanguageManager.getMessage("maintenance.timeformat.minute")));
             saveAll();
-            Bukkit.getServer().getScheduler().scheduleAsyncDelayedTask(plugin, () -> {
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                 MessageManager.broadcastPrefixed(MessageFormat.format(LanguageManager.getMessage("maintenance.restart.broadcast"), "30 " + LanguageManager.getMessage("maintenance.timeformat.seconds")));
                 saveAll();
             }, 600L);
-            Bukkit.getServer().getScheduler().scheduleAsyncDelayedTask(plugin, () -> {
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                 MessageManager.broadcastPrefixed(MessageFormat.format(LanguageManager.getMessage("maintenance.restart.broadcast"), "15 " + LanguageManager.getMessage("maintenance.timeformat.seconds")));
                 saveAll();
             }, 900L);
-            Bukkit.getServer().getScheduler().scheduleAsyncDelayedTask(plugin, () -> {
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
                 int i = 10;
                 while (i > 0) {
                     if (i == 1) {
@@ -73,7 +69,7 @@ public class MaintenanceManager {
                 saveAll();
                 Bukkit.spigot().restart();
             }, 1000L);
-        }, (minutes - 1) * 1200);
+        }, (minutes - 1) * 1200L);
     }
 
 }

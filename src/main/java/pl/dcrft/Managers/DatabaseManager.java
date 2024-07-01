@@ -90,10 +90,8 @@ public class DatabaseManager {
                 if(dataSource == null) {
                     Bukkit.getLogger().warning("DataSource is null! Initializing...");
                     initializeDataSource();
-                    connection = dataSource.getConnection();
-                } else {
-                    connection = dataSource.getConnection();
                 }
+                connection = dataSource.getConnection();
             }
         } catch (SQLException e) {
             ErrorUtil.logError(ErrorReason.DATABASE);
@@ -102,15 +100,14 @@ public class DatabaseManager {
         return connection;
     }
 
-    public int update(String update) {
+    public void update(String update) {
         if (!checkConnection()) {
             connection = getConnection();
         }
         try (PreparedStatement statement = connection.prepareStatement(update)) {
-            int result = statement.executeUpdate();
+            statement.executeUpdate();
             statement.close();
             connection.close();
-            return result;
         } catch (SQLException e) {
             ErrorUtil.logError(ErrorReason.DATABASE);
             throw new RuntimeException(e);

@@ -3,7 +3,6 @@ package pl.dcrft.Managers;
 import org.bukkit.ChatColor;
 import pl.dcrft.DragonCraftLobby;
 
-import java.io.File;
 import java.util.*;
 
 
@@ -19,15 +18,9 @@ public class LanguageManager {
     }
     public static List<String> getMessageList(String key){
         List<String> message = new ArrayList<>();
-        if(message != null){
-            for(String s : ConfigManager.getMessagesFile().getStringList(key)) {
-                message.add(ChatColor.translateAlternateColorCodes('&', s));
-            }
-            return message;
+        for (String s : ConfigManager.getMessagesFile().getStringList(key)) {
+            message.add(ChatColor.translateAlternateColorCodes('&', s));
         }
-        return Collections.singletonList("§cError! Unknown string list §e" + key + " §cCheck if it exists in §emessages.yml§c.");
-    }
-    public static void load() {
-        File file = new File(plugin.getDataFolder() + File.separator + "messages.yml");
+        return message;
     }
 }

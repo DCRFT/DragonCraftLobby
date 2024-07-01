@@ -2,7 +2,6 @@ package pl.dcrft.Listeners;
 
 import net.kyori.adventure.text.Component;
 import net.luckperms.api.LuckPerms;
-import net.luckperms.api.model.data.DataMutateResult;
 import net.luckperms.api.model.user.User;
 import net.luckperms.api.node.types.InheritanceNode;
 import org.bukkit.Bukkit;
@@ -43,8 +42,8 @@ public class PlayerJoinListener implements Listener {
         User user = lp.getUserManager().getUser(p.getUniqueId());
             String group = "nowy";
             InheritanceNode node = InheritanceNode.builder(group).value(true).expiry(7, TimeUnit.DAYS).build();
-            DataMutateResult res = user.data().add(node);
-         lp.getUserManager().saveUser(user);
+            user.data().add(node);
+            lp.getUserManager().saveUser(user);
         }
 
         if(!p.isOp()) {

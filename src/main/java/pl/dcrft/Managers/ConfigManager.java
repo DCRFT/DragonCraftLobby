@@ -50,15 +50,6 @@ public class ConfigManager {
         }
 
     }
-    public static void saveDatabaseConfig() {
-        try {
-            databaseConfig.save(databaseConfigFile);
-
-        } catch (Exception e) {
-             ErrorUtil.logError(ErrorReason.CONFIG);
-            e.printStackTrace();
-        }
-    }
 
     public static FileConfiguration getDataFile() {
         return data;
@@ -110,15 +101,6 @@ public class ConfigManager {
             var2.printStackTrace();
         }
 
-    }
-    public static void saveMessagesFile() {
-        try {
-            messagesConfig.save(messagesConfigFile);
-
-        } catch (Exception e) {
-             ErrorUtil.logError(ErrorReason.MESSAGES);
-            e.printStackTrace();
-        }
     }
 
 }

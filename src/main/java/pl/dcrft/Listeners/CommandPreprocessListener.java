@@ -1,14 +1,11 @@
 package pl.dcrft.Listeners;
 
-import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import pl.dcrft.DragonCraftLobby;
-import pl.dcrft.Managers.ConfigManager;
 import pl.dcrft.Managers.MaintenanceManager;
 import pl.dcrft.Managers.MessageManager;
 
@@ -30,6 +27,7 @@ public class CommandPreprocessListener implements Listener {
             String command = e.getMessage().substring(1);
             command = command.split(" ")[0].replace(":", "%colon%");
 
+            // TODO remove & move crestart to DragonCraftUtils
             if(command.equalsIgnoreCase("restart")){
                 e.setCancelled(true);
                 if (p.hasPermission("r.adm")) {
@@ -50,7 +48,7 @@ public class CommandPreprocessListener implements Listener {
             String aliasResult = plugin.getConfig().getString("aliases." + command);
             if (aliasResult != null) {
                 String userArguments = e.getMessage().substring(command.length() + 1);
-                e.setMessage(e.getMessage().substring(0, 1) + aliasResult + userArguments);
+                e.setMessage(e.getMessage().charAt(0) + aliasResult + userArguments);
             }
         }
     }

@@ -11,16 +11,13 @@ import pl.dcrft.Managers.LanguageManager;
 import pl.dcrft.Managers.Statistic.ServerType;
 import pl.dcrft.Managers.Statistic.StatisticGUIManager;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class InvetoryClickListener implements Listener {
     public static DragonCraftLobby plugin = DragonCraftLobby.getInstance();
-    List<Sound> list = new ArrayList<Sound>(Arrays.asList(
+    List<Sound> list = new ArrayList<>(Arrays.asList(
             Sound.MUSIC_DISC_5,
             Sound.MUSIC_DISC_11,
             Sound.MUSIC_DISC_13,

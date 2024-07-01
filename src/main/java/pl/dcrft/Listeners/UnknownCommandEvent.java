@@ -11,10 +11,6 @@ import pl.dcrft.Managers.MessageManager;
 
 public class UnknownCommandEvent implements Listener {
 
-    private static DragonCraftLobby plugin = DragonCraftLobby.getInstance();
-    //F***ING M$
-    private final String unknownMessage = LanguageManager.getMessage("unknown-command");
-
     @EventHandler
     public void preProcess(PlayerCommandPreprocessEvent e) {
         String command = e.getMessage().substring(1).split(" ")[0];

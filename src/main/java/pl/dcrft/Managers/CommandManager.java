@@ -11,15 +11,15 @@ import pl.dcrft.Managers.Statistic.ServerType;
 import pl.dcrft.Managers.Statistic.StatisticGUIManager;
 import pl.dcrft.Utils.ConfigUtil;
 
-import java.util.ArrayList;
-
 public class CommandManager implements CommandExecutor {
 
-    private static DragonCraftLobby plugin = DragonCraftLobby.getInstance();
+    private static final DragonCraftLobby plugin = DragonCraftLobby.getInstance();
 
     final String prefix = LanguageManager.getMessage("prefix");
 
     public boolean onCommand(final @NotNull CommandSender sender, final Command cmd, final @NotNull String label, final String[] args) {
+
+        // TODO remove & move crestart to DragonCraftUtils
         if (cmd.getName().equalsIgnoreCase("restart") && sender.hasPermission("r.adm")) {
             if (args.length == 0) {
                 MaintenanceManager.restartServer();

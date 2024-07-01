@@ -25,12 +25,7 @@ public class PlayerQuitListener implements Listener {
             final SimpleDateFormat dtf = new SimpleDateFormat("dd.MM.yyyy 'o' HH:mm");
             Date date = new Date(System.currentTimeMillis());
 
-            Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-
-                databaseManager.update("UPDATE " + DatabaseManager.table_bungee + " SET online='" + dtf.format(date) + "' WHERE nick='" + p.getName() + "'");
-
-
-            });
+            Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> databaseManager.update("UPDATE " + DatabaseManager.table_bungee + " SET online='" + dtf.format(date) + "' WHERE nick='" + p.getName() + "'"));
 
     }
 

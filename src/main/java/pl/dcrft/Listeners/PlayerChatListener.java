@@ -33,7 +33,7 @@ public class PlayerChatListener implements Listener {
 
         String niezmieniona = message;
         for (final Map.Entry<String, Object> filter : plugin.filters.entrySet()) {
-            if(ConfigManager.getDataFile().getBoolean("players." + p.getName() + ".modchat") != true && !ConfigManager.getDataFile().getBoolean("players." + p.getName() + ".adminchat")) {
+            if(!ConfigManager.getDataFile().getBoolean("players." + p.getName() + ".modchat") && !ConfigManager.getDataFile().getBoolean("players." + p.getName() + ".adminchat")) {
                 message = message.toLowerCase().replaceAll(filter.getKey().toLowerCase(), filter.getValue().toString());
             }
         }
@@ -57,9 +57,7 @@ public class PlayerChatListener implements Listener {
             }
         }
 
-        if (e.getMessage().length() == 0) {
-            e.setCancelled(true);
-        }
+        if (e.getMessage().isEmpty()) e.setCancelled(true);
 
         if (ConfigManager.getDataFile().getBoolean("players." + e.getPlayer().getName() + ".adminchat")) {
             if (ConfigManager.getDataFile().getBoolean("players." + e.getPlayer().getName() + ".adminchat")) {
