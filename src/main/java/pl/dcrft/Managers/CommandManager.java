@@ -17,7 +17,6 @@ public class CommandManager implements CommandExecutor {
 
     private static DragonCraftLobby plugin = DragonCraftLobby.getInstance();
 
-    public final ArrayList<SessionManager> list = new ArrayList<>();
     final String prefix = LanguageManager.getMessage("prefix");
 
     public boolean onCommand(final @NotNull CommandSender sender, final Command cmd, final @NotNull String label, final String[] args) {

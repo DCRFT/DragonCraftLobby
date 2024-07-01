@@ -27,11 +27,6 @@ public class ErrorUtil {
                     plugin.getLogger().info((s));
                 }
                 return;
-            case DISABLED:
-                for (String s : LanguageManager.getMessageList("errors.disabled")){
-                    plugin.getLogger().info((s));
-                }
-                return;
             case OTHER:
                 for (String s : LanguageManager.getMessageList("errors.other")){
                     plugin.getLogger().info((s));

@@ -12,7 +12,6 @@ import pl.dcrft.Listeners.*;
 import pl.dcrft.Managers.CommandManager;
 import pl.dcrft.Managers.DatabaseManager;
 import pl.dcrft.Managers.LanguageManager;
-import pl.dcrft.Managers.SessionManager;
 import pl.dcrft.Utils.CommandUtils.CommandRunUtil;
 import pl.dcrft.Utils.ConfigUtil;
 import pl.dcrft.Utils.ErrorUtils.ErrorReason;
@@ -75,7 +74,6 @@ public final class DragonCraftLobby extends JavaPlugin implements Listener, Comm
         for (String cmd : getConfig().getConfigurationSection("aliases").getKeys(false)) {
             Bukkit.getCommandMap().register(cmd, new CommandRunUtil(cmd));
         }
-        SessionManager.getRunnable().runTaskTimer(this, 0L, 1200L);
 
         RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
         if (provider != null) {

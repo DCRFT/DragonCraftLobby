@@ -14,11 +14,6 @@ items:
     disabled: WHITE_STAINED_GLASS_PANE
 aliases:
   non-premium: "cracked"
-afk:
-  kick_warn_delay: 14
-  kick_delay: 15
-  sound_on_get_warn: true
-  sound_on_notafk: true
 scoreboard:
   title: "§e§lDragon§6§lCraft"
   prefix: "§e» "

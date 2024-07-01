@@ -104,9 +104,6 @@ public class PlayerJoinListener implements Listener {
             });
         }
 
-        SessionManager newSession = new SessionManager(e.getPlayer());
-        SessionManager.list.add(newSession);
-
         p.getInventory().clear();
 
         p.getInventory().setHeldItemSlot(4);

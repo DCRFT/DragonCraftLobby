@@ -26,29 +26,10 @@ public class CommandPreprocessListener implements Listener {
             String[] args = e.getMessage().split(" ");
             args = Arrays.copyOfRange(args, 1, args.length);
 
-            FileConfiguration disabledConfig = ConfigManager.getDisabledFile();
-
             Player p = e.getPlayer();
             String command = e.getMessage().substring(1);
             command = command.split(" ")[0].replace(":", "%colon%");
 
-            if (disabledConfig.getKeys(false) != null) {
-                if (disabledConfig.getKeys(false).stream().anyMatch(command::equalsIgnoreCase)) {
-                    for (String cmd : disabledConfig.getKeys(false)) {
-                        String permission = disabledConfig.getString(cmd + ".Permission");
-                        if (command.equalsIgnoreCase(cmd)) {
-                            if (permission == null) {
-                                permission = plugin.getConfig().getString("disabled_default_permission");
-                            }
-                            if (!p.hasPermission(permission) && !p.isOp()) {
-                                e.setCancelled(true);
-                                p.sendMessage(ChatColor.translateAlternateColorCodes('&', disabledConfig.getString(cmd + ".Message")));
-                                return;
-                            }
-                        }
-                    }
-                }
-            }
             if(command.equalsIgnoreCase("restart")){
                 e.setCancelled(true);
                 if (p.hasPermission("r.adm")) {

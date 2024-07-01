@@ -51,9 +51,6 @@ staffchat:
     spacer: "§e » §a"
   both: "§c§lA§4§lC §ei §a§lM§2§lC"
   public: "§ePubliczny"
-afk:
-  kick_msg: "§cZostałeś wyrzucony za bycie nieaktywnym dłużej niż 15 minut."
-  kick_warn_msg: "§cHej! Za chwilę zostaniesz wyrzucony za zbyt długą nieaktywność."
 chat_muted: "§cCzat jest wyciszony."
 chat:
   enabled: "§aCzat został włączony."
@@ -108,10 +105,6 @@ errors:
   messages:
     - "§e--------------------------------------------"
     - "§cWystąpił błąd podczas odczytywania pliku messages.yml! Wszelke przydatne informacje znajdziesz poniżej."
-    - "§e--------------------------------------------"
-  disabled:
-    - "§e--------------------------------------------"
-    - "§cWystąpił błąd podczas odczytywania pliku disabled.yml! Wszelke przydatne informacje znajdziesz poniżej."
     - "§e--------------------------------------------"
   other:
     - "§e--------------------------------------------"
