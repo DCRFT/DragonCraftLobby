@@ -4,10 +4,8 @@ import pl.dcrft.DragonCraftLobby;
 
 public class GroupUtil {
 
-    private static final DragonCraftLobby plugin = DragonCraftLobby.getInstance();
-
     public static String getPlayerGroup(String p) {
-        String rawRank = plugin.getLuckPerms().getUserManager().getUser(p).getPrimaryGroup();
+        String rawRank = DragonCraftLobby.getLuckPerms().getUserManager().getUser(p).getPrimaryGroup();
         String rank = "Gracz";
         if (rawRank.equalsIgnoreCase("vip") || rawRank.equalsIgnoreCase("vip+")) {
             rank = "VIP";

@@ -6,7 +6,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import pl.dcrft.DragonCraftLobby;
 import pl.dcrft.Managers.LanguageManager;
 import pl.dcrft.Managers.Statistic.ServerType;
 import pl.dcrft.Managers.Statistic.StatisticGUIManager;
@@ -16,8 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InvetoryClickListener implements Listener {
-    public static DragonCraftLobby plugin = DragonCraftLobby.getInstance();
-    List<Sound> list = new ArrayList<>(Arrays.asList(
+    final List<Sound> list = new ArrayList<>(Arrays.asList(
             Sound.MUSIC_DISC_5,
             Sound.MUSIC_DISC_11,
             Sound.MUSIC_DISC_13,
@@ -36,9 +34,7 @@ public class InvetoryClickListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
-
         Player p = (Player) e.getWhoClicked();
-
 
         String title = e.getView().getTitle();
 

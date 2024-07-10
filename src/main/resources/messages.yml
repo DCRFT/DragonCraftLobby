@@ -32,9 +32,6 @@ maintenance:
     second: "sekundę"
     seconds: "sekund"
   wrong_value: "§cWartość musi być liczbą nie mniejszą od 1."
-  restart:
-    in_progress: "§cTrwa ponowne uruchamianie serwera..."
-    broadcast: "§cZa {0} serwer zostanie uruchomiony ponownie."
 staffchat:
   enabled: "§aWłączono czat."
   disabled: "§cWyłączono czat."
@@ -93,10 +90,6 @@ errors:
   database:
     - "§e--------------------------------------------"
     - "§cWystąpił błąd podczas łączenia się z bazą danych MySQL! Wszelke przydatne informacje znajdziesz poniżej."
-    - "§e--------------------------------------------"
-  data:
-    - "§e--------------------------------------------"
-    - "§cWystąpił błąd podczas odczytywania pliku data.yml! Wszelke przydatne informacje znajdziesz poniżej."
     - "§e--------------------------------------------"
   config:
     - "§e--------------------------------------------"

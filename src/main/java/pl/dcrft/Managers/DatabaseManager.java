@@ -3,7 +3,6 @@ package pl.dcrft.Managers;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.bukkit.Bukkit;
-import pl.dcrft.DragonCraftLobby;
 import pl.dcrft.Utils.ErrorUtils.ErrorReason;
 import pl.dcrft.Utils.ErrorUtils.ErrorUtil;
 
@@ -11,7 +10,6 @@ import java.sql.*;
 
 
 public class DatabaseManager {
-    public static final DragonCraftLobby plugin = DragonCraftLobby.getInstance();
 
     public static Connection connection;
     public static final String host = ConfigManager.getDatabaseFile().getString("host");
@@ -25,7 +23,6 @@ public class DatabaseManager {
     public static final String table_hns = ConfigManager.getDatabaseFile().getString("table_hns");
 
     public static final String table_bungee = ConfigManager.getDatabaseFile().getString("table_bungee");
-    private static final String properties = ConfigManager.getDatabaseFile().getString("properties");
 
     private static HikariDataSource dataSource;
 

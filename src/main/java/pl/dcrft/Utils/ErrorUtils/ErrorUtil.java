@@ -12,11 +12,6 @@ public class ErrorUtil {
                     plugin.getLogger().info((s));
                 }
                 return;
-            case DATA:
-                for (String s : LanguageManager.getMessageList("errors.data")){
-                    plugin.getLogger().info((s));
-                }
-                return;
             case CONFIG:
                 for (String s : LanguageManager.getMessageList("errors.config")){
                     plugin.getLogger().info((s));

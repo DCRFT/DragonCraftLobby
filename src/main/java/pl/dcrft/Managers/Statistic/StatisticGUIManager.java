@@ -51,9 +51,8 @@ public class StatisticGUIManager {
             try {
                 statistics = StatisticManager.getStatistics(serverType, p);
             } catch (SQLException e) {
-                e.printStackTrace();
                 sendPrefixedMessage(sender, "wrong_player_nickname");
-                return;
+                throw new RuntimeException(e);
             }
 
             String rank = statistics.get(StatisticType.RANK);

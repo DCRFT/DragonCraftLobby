@@ -3,7 +3,6 @@ package pl.dcrft.Utils;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pl.dcrft.DragonCraftLobby;
 import pl.dcrft.Managers.ConfigManager;
-import pl.dcrft.Managers.LanguageManager;
 
 import java.io.File;
 
@@ -24,17 +23,12 @@ public class ConfigUtil {
 
         ConfigManager.createMessagesFile();
         ConfigManager.createCustomConfig();
-        ConfigManager.createDataFile();
     }
 
     public static void reloadFiles() {
-        ConfigManager.saveData();
 
         plugin.reloadConfig();
-        ConfigManager.data = YamlConfiguration.loadConfiguration(ConfigManager.dataFile);
         ConfigManager.databaseConfig = YamlConfiguration.loadConfiguration(ConfigManager.databaseConfigFile);
         ConfigManager.messagesConfig = YamlConfiguration.loadConfiguration(ConfigManager.messagesConfigFile);
-
-        plugin.filters = plugin.getConfig().getConfigurationSection("filters").getValues(true);
     }
 }

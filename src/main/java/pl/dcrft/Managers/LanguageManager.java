@@ -1,13 +1,11 @@
 package pl.dcrft.Managers;
 
 import org.bukkit.ChatColor;
-import pl.dcrft.DragonCraftLobby;
 
 import java.util.*;
 
 
 public class LanguageManager {
-    public static final DragonCraftLobby plugin = DragonCraftLobby.getInstance();
 
     public static String getMessage(String key){
             String message = ConfigManager.getMessagesFile().getString(key);

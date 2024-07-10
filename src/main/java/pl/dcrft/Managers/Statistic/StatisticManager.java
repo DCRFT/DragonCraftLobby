@@ -17,7 +17,7 @@ public class StatisticManager {
             result = ogol.next();
             ogol.close();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return result;
     }

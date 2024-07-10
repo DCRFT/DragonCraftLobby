@@ -2,9 +2,6 @@ package pl.dcrft.Utils;
 
 import org.bukkit.ChatColor;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class ColorUtil {
 
     public static String reformatRGB(String message) {

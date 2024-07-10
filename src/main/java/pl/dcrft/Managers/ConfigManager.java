@@ -17,9 +17,6 @@ public class ConfigManager {
     public static File databaseConfigFile;
     public static FileConfiguration databaseConfig;
 
-    public static File dataFile;
-    public static FileConfiguration data;
-
     public static File messagesConfigFile;
     public static FileConfiguration messagesConfig;
 
@@ -44,42 +41,13 @@ public class ConfigManager {
 
         try {
             databaseConfig.load(databaseConfigFile);
-        } catch (InvalidConfigurationException | IOException var2) {
-             ErrorUtil.logError(ErrorReason.DATA);
-            var2.printStackTrace();
+        } catch (InvalidConfigurationException | IOException e) {
+            ErrorUtil.logError(ErrorReason.DATABASE);
+            throw new RuntimeException(e);
         }
 
     }
 
-    public static FileConfiguration getDataFile() {
-        return data;
-    }
-
-    public static void createDataFile() {
-        dataFile = new File(plugin.getDataFolder(), "data.yml");
-        if (!dataFile.exists()) {
-            dataFile.getParentFile().mkdirs();
-            plugin.saveResource("data.yml", false);
-        }
-
-        data = new YamlConfiguration();
-
-        try {
-            data.load(dataFile);
-        } catch (InvalidConfigurationException | IOException var2) {
-             ErrorUtil.logError(ErrorReason.DATA);
-            var2.printStackTrace();
-        }
-
-    }
-    public static void saveData() {
-        try {
-            data.save(dataFile);
-        } catch (Exception e) {
-             ErrorUtil.logError(ErrorReason.DATA);
-            e.printStackTrace();
-        }
-    }
 
     public static FileConfiguration getMessagesFile() {
         return messagesConfig;
@@ -90,15 +58,16 @@ public class ConfigManager {
         if (!messagesConfigFile.exists()) {
             messagesConfigFile.getParentFile().mkdirs();
             plugin.saveResource("messages.yml", false);
+            plugin.saveResource("messages.yml", false);
         }
 
         messagesConfig = new YamlConfiguration();
 
         try {
             messagesConfig.load(messagesConfigFile);
-        } catch (InvalidConfigurationException | IOException var2) {
+        } catch (InvalidConfigurationException | IOException e) {
              ErrorUtil.logError(ErrorReason.MESSAGES);
-            var2.printStackTrace();
+            throw new RuntimeException(e);
         }
 
     }

@@ -4,14 +4,11 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import pl.dcrft.DragonCraftLobby;
 import pl.dcrft.Managers.LanguageManager;
 
 import java.util.ArrayList;
 
 public class PvP {
-
-    private static DragonCraftLobby plugin = DragonCraftLobby.getInstance();
 
     public static Inventory setServerInventory(Inventory inv, String player, String kills, String deaths, String assists, String kdr, String level, String ranking, String money, String killstreak, String timeplayed) {
 

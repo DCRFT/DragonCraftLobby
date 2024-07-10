@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.List;
 
 public class AnimationUtil {
-    public static DragonCraftLobby plugin = DragonCraftLobby.getInstance();
+    public static final DragonCraftLobby plugin = DragonCraftLobby.getInstance();
 
     public static void playAnimation(Player p, List<String> title, String subtitle) {
 

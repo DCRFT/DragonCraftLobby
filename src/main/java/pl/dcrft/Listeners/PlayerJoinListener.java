@@ -27,7 +27,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class PlayerJoinListener implements Listener {
-    public static DragonCraftLobby plugin = DragonCraftLobby.getInstance();
+    public static final DragonCraftLobby plugin = DragonCraftLobby.getInstance();
 
     @EventHandler
     public void onPlayerJoin (PlayerJoinEvent e){
@@ -38,7 +38,7 @@ public class PlayerJoinListener implements Listener {
 
 
         if(!p.hasPlayedBefore()){
-        LuckPerms lp = plugin.getLuckPerms();
+        LuckPerms lp = DragonCraftLobby.getLuckPerms();
         User user = lp.getUserManager().getUser(p.getUniqueId());
             String group = "nowy";
             InheritanceNode node = InheritanceNode.builder(group).value(true).expiry(7, TimeUnit.DAYS).build();
@@ -147,9 +147,5 @@ public class PlayerJoinListener implements Listener {
         }
 
         AnimationUtil.playAnimation(p, LanguageManager.getMessageList("welcome.title"), LanguageManager.getMessage("welcome.subtitle"));
-
-        new PanelManager().showRepeatingPanel(p);
-
     }
-
 }

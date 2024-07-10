@@ -12,15 +12,12 @@ import pl.dcrft.Listeners.*;
 import pl.dcrft.Managers.CommandManager;
 import pl.dcrft.Managers.DatabaseManager;
 import pl.dcrft.Managers.LanguageManager;
-import pl.dcrft.Utils.CommandUtils.CommandRunUtil;
 import pl.dcrft.Utils.ConfigUtil;
 import pl.dcrft.Utils.ErrorUtils.ErrorReason;
 import pl.dcrft.Utils.ErrorUtils.ErrorUtil;
 
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public final class DragonCraftLobby extends JavaPlugin implements Listener, CommandExecutor {
     private static DragonCraftLobby instance;
@@ -34,12 +31,6 @@ public final class DragonCraftLobby extends JavaPlugin implements Listener, Comm
     }
 
     public static LuckPerms luckPermsApi;
-    public Map<String, Object> filters;
-
-    public DragonCraftLobby() {
-        this.filters = new HashMap<>();
-    }
-
 
     @Override
     public void onEnable() {
@@ -52,9 +43,6 @@ public final class DragonCraftLobby extends JavaPlugin implements Listener, Comm
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerUseListener(), this);
         getServer().getPluginManager().registerEvents(new InvetoryClickListener(), this);
-        getServer().getPluginManager().registerEvents(new CommandPreprocessListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerChatListener(), this);
-        getServer().getPluginManager().registerEvents(new UnknownCommandEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerQuitListener(), this);
         getServer().getPluginManager().registerEvents(new HotbarSwitchListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryCloseListener(), this);
@@ -65,14 +53,9 @@ public final class DragonCraftLobby extends JavaPlugin implements Listener, Comm
         getLogger().info(LanguageManager.getMessage("plugin.enabled") + getDescription().getVersion());
         getLogger().info(LanguageManager.getMessage("plugin.footer"));
 
-        this.filters = this.getConfig().getConfigurationSection("filters").getValues(true);
-
         List<Command> commands = PluginCommandYamlParser.parse(this);
         for (Command command : commands) {
             getCommand(command.getName()).setExecutor(new CommandManager());
-        }
-        for (String cmd : getConfig().getConfigurationSection("aliases").getKeys(false)) {
-            Bukkit.getCommandMap().register(cmd, new CommandRunUtil(cmd));
         }
 
         RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
@@ -88,9 +71,9 @@ public final class DragonCraftLobby extends JavaPlugin implements Listener, Comm
     public void onDisable() {
         try {
             DatabaseManager.getConnection().close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
             ErrorUtil.logError(ErrorReason.DATABASE);
+            throw new RuntimeException(e);
         }
         getLogger().info(LanguageManager.getMessage("plugin.header"));
         getLogger().info("§e§lDragon§6§lCraft§a§lCore");

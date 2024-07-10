@@ -22,8 +22,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PlayerUseListener implements Listener {
-    public static DragonCraftLobby plugin = DragonCraftLobby.getInstance();
-    List<Material> list = new ArrayList<>(Arrays.asList(
+    public static final DragonCraftLobby plugin = DragonCraftLobby.getInstance();
+    final List<Material> list = new ArrayList<>(Arrays.asList(
             Material.MUSIC_DISC_5,
             Material.MUSIC_DISC_11,
             Material.MUSIC_DISC_13,
@@ -42,7 +42,6 @@ public class PlayerUseListener implements Listener {
     @EventHandler
     public void onPlayerUse(PlayerInteractEvent e) {
         Player p = e.getPlayer();
-
 
         ItemStack itemStack = p.getInventory().getItemInMainHand();
 

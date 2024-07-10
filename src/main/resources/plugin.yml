@@ -6,22 +6,7 @@ author: NickNickerYT
 description: DragonCraftLobby
 depend: [ AuthMe, PlaceholderAPI ]
 commands:
-  czat:
-    description: Przełaczanie czatu.
-    permission: panel.mod
-  ac:
-    description: Włącz AdminChat.
-    permission: admin.chat
-  mc:
-    description: Włącz ModChat.
-    permission: mod.chat
-  restart:
-    description: aa
   gracz:
     description: aa
   dcl:
     description: aa
-  cc:
-    description: aa
-  crestart:
-    description: console restart
