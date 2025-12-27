@@ -4,7 +4,6 @@ import net.kyori.adventure.text.Component;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.model.user.User;
 import net.luckperms.api.node.types.InheritanceNode;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,14 +15,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import pl.dcrft.DragonCraftLobby;
 import pl.dcrft.Managers.*;
 import pl.dcrft.Utils.AnimationUtil;
-import pl.dcrft.Utils.ErrorUtils.ErrorReason;
-import pl.dcrft.Utils.ErrorUtils.ErrorUtil;
-import pl.dcrft.Utils.GroupUtil;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class PlayerJoinListener implements Listener {
@@ -33,7 +25,6 @@ public class PlayerJoinListener implements Listener {
     public void onPlayerJoin (PlayerJoinEvent e){
 
 
-        final DatabaseManager databaseManager =  new DatabaseManager();
         Player p = e.getPlayer();
 
 
@@ -46,63 +37,6 @@ public class PlayerJoinListener implements Listener {
             lp.getUserManager().saveUser(user);
         }
 
-        if(!p.isOp()) {
-            Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-                try {
-
-                    final ResultSet result = databaseManager.query("SELECT ID FROM `" + DatabaseManager.table_bungee + "` WHERE nick = '" + p.getName() + "'");
-
-                    final SimpleDateFormat dtf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-                    Date date = new Date(p.getFirstPlayed());
-                    final String since = dtf.format(date);
-
-                    String rank = GroupUtil.getPlayerGroup(p.getName());
-
-                    if (!result.next()) {
-                        databaseManager.update("INSERT INTO " + DatabaseManager.table_bungee + " (nick, ranga, since, online) VALUES ('" + p.getName() + "', '" + rank + "', '" + since + "', 'teraz');");
-                        databaseManager.update("INSERT INTO " + DatabaseManager.table_survival + " (nick, kille, dedy, kdr, bloki, slub) VALUES ('" + p.getName() + "', '0', '0', '0', '0', 'brak'); ");
-                        databaseManager.update("INSERT INTO " + DatabaseManager.table_skyblock + " (nick, kille, dedy, kdr, poziom, kasa, slub) VALUES ('" + p.getName() + "', '0', '0', '0', '0', '0', 'brak'); ");
-                        databaseManager.update("INSERT INTO " + DatabaseManager.table_pvp +  " (nick, kille, dedy, asysty, kdr, ranking, poziom, kasa, killstreak, czasgry) VALUES ('" + p.getName() + "', '0', '0', '0', '0', '1000', '1', '0', '0', '0'); ");
-                    } else {
-                        String online = "teraz";
-                        if(p.hasPermission("dcc.login.admin")) online = "-";
-                        databaseManager.update("UPDATE " + DatabaseManager.table_bungee + " SET ranga='" + rank + "', since='" + since + "', online='" + online + "' WHERE nick='" + p.getName() + "';");
-                    }
-                    result.close();
-
-                    ResultSet resultsurvi = databaseManager.query("SELECT ID FROM `" + DatabaseManager.table_survival + "` WHERE nick = '" + p.getName() + "'");
-                    if (!resultsurvi.next()) {
-                        databaseManager.update("INSERT INTO " + DatabaseManager.table_survival + " (nick, kille, dedy, kdr, bloki, czasgry, slub) VALUES ('" + p.getName() + "', '0', '0', '0', '0', '0', 'brak'); ");
-                    }
-                    resultsurvi.close();
-
-                    ResultSet resultsky = databaseManager.query("SELECT ID FROM `" + DatabaseManager.table_skyblock + "` WHERE nick = '" + p.getName() + "'");
-                    if (!resultsky.next()) {
-                        databaseManager.update("INSERT INTO " + DatabaseManager.table_skyblock + " (nick, kille, dedy, kdr, poziom, czasgry, kasa, slub) VALUES ('" + p.getName() + "', '0', '0', '0', '0', '0', '0', 'brak'); ");
-                    }
-                    resultsky.close();
-
-                    ResultSet resultpvp = databaseManager.query("SELECT ID FROM `" + DatabaseManager.table_pvp + "` WHERE nick = '" + p.getName() + "'");
-                    if (!resultpvp.next()) {
-                        databaseManager.update("INSERT INTO " + DatabaseManager.table_pvp +  " (nick, kille, dedy, asysty, kdr, ranking, poziom, kasa, killstreak, czasgry) VALUES ('" + p.getName() + "', '0', '0', '0', '0', '1000', '1', '0', '0', '0'); ");
-                    }
-                    resultpvp.close();
-
-                    ResultSet resulthns = databaseManager.query("SELECT ID FROM `" + DatabaseManager.table_hns + "` WHERE nick = '" + p.getName() + "'");
-                    if (!resulthns.next()) {
-                        databaseManager.update("INSERT INTO " + DatabaseManager.table_hns +  " (nick, kille, dedy, kasa, czasgry) VALUES ('" + p.getName() + "', '0', '0', '0', '0'); ");
-                    }
-                    resulthns.close();
-
-                } catch (SQLException ex) {
-                    ErrorUtil.logError(ErrorReason.DATABASE);
-                    throw new RuntimeException(ex);
-                }
-
-
-            });
-        }
-
         p.getInventory().clear();
 
         p.getInventory().setHeldItemSlot(4);
@@ -112,12 +46,6 @@ public class PlayerJoinListener implements Listener {
         musicMeta.displayName(Component.text(LanguageManager.getMessage("items.music")));
         music.setItemMeta(musicMeta);
 
-        ItemStack profile = new ItemStack(Material.PLAYER_HEAD);
-
-        SkullMeta profileMeta = (SkullMeta) profile.getItemMeta();
-        profileMeta.setOwningPlayer(p);
-        profileMeta.displayName(Component.text(LanguageManager.getMessage("items.profile")));
-        profile.setItemMeta(profileMeta);
 
         ItemStack players = new ItemStack(Material.getMaterial(plugin.getConfig().getString("items.players.visible")));
         ItemMeta playersMeta = players.getItemMeta();
@@ -135,7 +63,6 @@ public class PlayerJoinListener implements Listener {
         wh_off.setItemMeta(wh_offMeta);
 
         p.getInventory().setItem(plugin.getConfig().getInt("slots.music"), music);
-        p.getInventory().setItem(plugin.getConfig().getInt("slots.profile"), profile);
         p.getInventory().setItem(plugin.getConfig().getInt("slots.players"), players);
 
         if(p.hasPermission("dcl.adm")) {

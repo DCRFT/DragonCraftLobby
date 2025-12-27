@@ -7,8 +7,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import pl.dcrft.Managers.LanguageManager;
-import pl.dcrft.Managers.Statistic.ServerType;
-import pl.dcrft.Managers.Statistic.StatisticGUIManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,25 +50,6 @@ public class InvetoryClickListener implements Listener {
                 p.stopAllSounds();
                 p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100F, 0.5F);
             }
-        } else if (title.contains(LanguageManager.getMessage("statistics.title"))) {
-            e.setCancelled(true);
-            if (e.getCurrentItem() != null) {
-                if(!e.getCurrentItem().getEnchantments().isEmpty()) return;
-                switch (e.getCurrentItem().getType()) {
-                    case IRON_PICKAXE:
-                        StatisticGUIManager.showStatistics(ServerType.Survival, p, title.replace(LanguageManager.getMessage("statistics.title"), ""));
-                        return;
-                    case GRASS_BLOCK:
-                        //StatisticGUIManager.showStatistics(ServerType.SkyBlock, p, title.replace(LanguageManager.getMessage("statistics.title"), ""));
-                        return;
-                    case IRON_SWORD:
-                        //StatisticGUIManager.showStatistics(ServerType.PvP, p, title.replace(LanguageManager.getMessage("statistics.title"), ""));
-                        return;
-                    case CRAFTING_TABLE:
-                        //StatisticGUIManager.showStatistics(ServerType.HNS, p, title.replace(LanguageManager.getMessage("statistics.title"), ""));
-                }
-            }
-
         }
     }
 }

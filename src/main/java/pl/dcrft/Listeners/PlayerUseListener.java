@@ -14,8 +14,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import pl.dcrft.DragonCraftLobby;
 import pl.dcrft.Managers.LanguageManager;
-import pl.dcrft.Managers.Statistic.ServerType;
-import pl.dcrft.Managers.Statistic.StatisticGUIManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,13 +65,6 @@ public class PlayerUseListener implements Listener {
                 inventory.setItem(35, is);
 
                 p.openInventory(inventory);
-                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100F, 1F);
-
-            } else if (itemStack.getItemMeta().displayName().equals(Component.text(LanguageManager.getMessage("items.profile")))) {
-                e.setCancelled(true);
-
-                StatisticGUIManager.showStatistics(ServerType.Survival, p, p.getName());
-
                 p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_XYLOPHONE, 100F, 1F);
 
             } else if (itemStack.getItemMeta().displayName().equals(Component.text(LanguageManager.getMessage("items.players.visible")))) {

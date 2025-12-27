@@ -1,7 +1,6 @@
 captcha-enabled: false
 slots:
   music: 0
-  profile: 2
   players: 8
   whitelist: 6
 items:

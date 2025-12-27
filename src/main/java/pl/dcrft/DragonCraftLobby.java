@@ -10,7 +10,6 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.dcrft.Listeners.*;
 import pl.dcrft.Managers.CommandManager;
-import pl.dcrft.Managers.DatabaseManager;
 import pl.dcrft.Managers.LanguageManager;
 import pl.dcrft.Utils.ConfigUtil;
 import pl.dcrft.Utils.ErrorUtils.ErrorReason;
@@ -43,7 +42,6 @@ public final class DragonCraftLobby extends JavaPlugin implements Listener, Comm
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerUseListener(), this);
         getServer().getPluginManager().registerEvents(new InvetoryClickListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerQuitListener(), this);
         getServer().getPluginManager().registerEvents(new HotbarSwitchListener(), this);
         getServer().getPluginManager().registerEvents(new InventoryCloseListener(), this);
 
@@ -63,18 +61,11 @@ public final class DragonCraftLobby extends JavaPlugin implements Listener, Comm
             luckPermsApi = provider.getProvider();
 
         }
-        DatabaseManager.initializeDataSource();
 
     }
 
     @Override
     public void onDisable() {
-        try {
-            DatabaseManager.getConnection().close();
-        } catch (SQLException e) {
-            ErrorUtil.logError(ErrorReason.DATABASE);
-            throw new RuntimeException(e);
-        }
         getLogger().info(LanguageManager.getMessage("plugin.header"));
         getLogger().info("§e§lDragon§6§lCraft§a§lCore");
         getLogger().info(LanguageManager.getMessage("plugin.disabled") + getDescription().getVersion());

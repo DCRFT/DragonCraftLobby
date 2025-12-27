@@ -6,7 +6,5 @@ author: NickNickerYT
 description: DragonCraftLobby
 depend: [ AuthMe, PlaceholderAPI ]
 commands:
-  gracz:
-    description: aa
   dcl:
     description: aa

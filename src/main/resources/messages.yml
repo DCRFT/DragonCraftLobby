@@ -2,7 +2,6 @@ prefix: "§e§lDragon§6§lCraft §e» "
 wrong_player_nickname: "§cPodaj poprawny nick gracza."
 items:
   music: "&3Muzyka"
-  profile: "&eMój profil"
   players:
     visible: "&3Gracze&e » &awidoczni"
     hidden: "&3Gracze&e » &cukryci"
